@@ -3,9 +3,11 @@ package helpedfunctions;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-public class StringUtils {
+import static org.apache.commons.lang3.StringUtils.LF;
 
-    private static final Logger logger = LogManager.getLogger(StringUtils.class);
+public class StringsUtils {
+
+    private static final Logger logger = LogManager.getLogger(StringsUtils.class);
 
     public static boolean isEmailValid(String email) {
         if (email == null || email.isEmpty()) {
@@ -47,7 +49,9 @@ public class StringUtils {
         if (isEmailValid(email)) {
             System.out.print("Email valid");
         } else {
-            System.out.print("Email invalid due to OWASP \n");
+
+            System.out.print("Email invalid due to OWASP " + LF);
+
         }
     }
 
