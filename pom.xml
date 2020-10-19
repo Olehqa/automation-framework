@@ -14,6 +14,8 @@
         <org.apache.logging.log4j.version>2.11.0</org.apache.logging.log4j.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <org.testng.version>6.14.3</org.testng.version>
+        <org.apache.commons.version>3.10</org.apache.commons.version>
+        <org.apache.maven.plugins.version>3.5.1</org.apache.maven.plugins.version>
     </properties>
     <build>
 
@@ -28,7 +30,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.5.1</version>
+                    <version>${org.apache.maven.plugins.version}</version>
                     <configuration>
                         <source>${project.java.version}</source>
                         <target>${project.java.version}</target>
@@ -39,7 +41,9 @@
 
 
     </build>
+
     <dependencyManagement></dependencyManagement>
+
     <dependencies>
 
         <dependency>
@@ -47,10 +51,11 @@
             <artifactId>testng</artifactId>
             <version>${org.testng.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.10</version>
+            <version>${org.apache.commons.version}</version>
         </dependency>
 
         <dependency>
@@ -58,11 +63,12 @@
             <artifactId>log4j-api</artifactId>
             <version>${org.apache.logging.log4j.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>${org.apache.logging.log4j.version}</version>
         </dependency>
-    </dependencies>
 
+    </dependencies>
 </project>
