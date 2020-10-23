@@ -7,6 +7,7 @@
     <artifactId>skelia.alpega.auto</artifactId>
     <groupId>pdp</groupId>
     <version>1.0-SNAPSHOT</version>
+
     <properties>
         <project.java.version>1.8</project.java.version>
         <project.build.encoding>UTF-8</project.build.encoding>
@@ -16,33 +17,8 @@
         <org.testng.version>6.14.3</org.testng.version>
         <org.apache.commons.version>3.10</org.apache.commons.version>
         <org.apache.maven.plugins.version>3.5.1</org.apache.maven.plugins.version>
+        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
     </properties>
-    <build>
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire-plugin.version}</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${org.apache.maven.plugins.version}</version>
-                    <configuration>
-                        <source>${project.java.version}</source>
-                        <target>${project.java.version}</target>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-
-    </build>
-
-    <dependencyManagement></dependencyManagement>
 
     <dependencies>
 
@@ -71,4 +47,29 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-failsafe-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.version}</version>
+                    <configuration>
+                        <source>${project.java.version}</source>
+                        <target>${project.java.version}</target>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
+
 </project>

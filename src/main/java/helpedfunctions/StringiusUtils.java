@@ -7,8 +7,8 @@ import org.apache.logging.log4j.Logger;
 public class StringiusUtils {
     private static final Logger LOGGER = LogManager.getLogger(StringiusUtils.class);
 
-    private static boolean isEmailValid(String email) {
-        return isEmailContainEt(email) && isEmailIsNotStartsFromDot(email) && isEmailDomainLengthValid(email)
+    public static boolean isEmailValid(String email) {
+        return !isEmailEmpty(email) && isEmailContainEt(email) && isEmailIsNotStartsFromDot(email) && isEmailDomainLengthValid(email)
                 && isEmailDomainFromDotLengthValid(email) && isEmailLastCharValid(email) && isEmailLengthValid(email)
                 && isEmailLocalPartLengthValid(email);
     }
@@ -43,7 +43,9 @@ public class StringiusUtils {
     }
 
     public static boolean isEmailContainEt(String email) {
-        if (!email.contains("@")) {
+        if (isEmailEmpty(email)) {
+            return false;
+        } else if (!email.contains("@")) {
             LOGGER.warn("The email do not contains '@' character");
             return false;
         }
@@ -51,7 +53,9 @@ public class StringiusUtils {
     }
 
     public static boolean isEmailIsNotStartsFromDot(String email) {
-        if (email.indexOf(0) == '.') {
+        if (isEmailEmpty(email)) {
+            return false;
+        } else if (email.indexOf(0) == '.') {
             LOGGER.warn("The email start from '.");
             return false;
         }
@@ -59,7 +63,9 @@ public class StringiusUtils {
     }
 
     public static boolean isEmailLengthValid(String email) {
-        if (email.length() > 256) {
+        if (isEmailEmpty(email)) {
+            return false;
+        } else if (email.length() > 256) {
             LOGGER.warn("The email contains more then 256 characters");
             return false;
         }
@@ -67,7 +73,9 @@ public class StringiusUtils {
     }
 
     public static boolean isEmailDomainLengthValid(String email) {
-        if (getEmailDomain(email).length() > 255) {
+        if (isEmailEmpty(email)) {
+            return false;
+        } else if (getEmailDomain(email).length() > 255) {
             LOGGER.warn("The email domain contains more then 255 characters");
             return false;
         }
@@ -75,7 +83,9 @@ public class StringiusUtils {
     }
 
     public static boolean isEmailLocalPartLengthValid(String email) {
-        if (getLocalPart(email).length() > 64) {
+        if (isEmailEmpty(email)) {
+            return false;
+        } else if (getLocalPart(email).length() > 64) {
             LOGGER.warn("The email`s local part contains more then 64 characters");
             return false;
         } else if (getLocalPart(email).length() <= 1) {
@@ -86,7 +96,9 @@ public class StringiusUtils {
     }
 
     public static boolean isEmailDomainFromDotLengthValid(String email) {
-        if (getEmailDomainFromPoint(email).length() > 7) {
+        if (isEmailEmpty(email)) {
+            return false;
+        } else if (getEmailDomainFromPoint(email).length() > 7) {
             LOGGER.warn("The email domain contains more then 7 characters after dot");
             return false;
         }
@@ -94,7 +106,9 @@ public class StringiusUtils {
     }
 
     public static boolean isEmailLastCharValid(String email) {
-        if (email.charAt(email.length() - 1) == '.') {
+        if (isEmailEmpty(email)) {
+            return false;
+        } else if (email.charAt(email.length() - 1) == '.') {
             LOGGER.warn("The email`s last char is '.'");
             return false;
         }
@@ -102,7 +116,6 @@ public class StringiusUtils {
     }
 
     public static void main(String[] args) {
-
         String email = "contribute@org.goo";
         if (isEmailValid(email)) {
             LOGGER.info("Email valid");
