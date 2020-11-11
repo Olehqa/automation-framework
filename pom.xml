@@ -49,27 +49,72 @@
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
+        <plugins>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven-failsafe-plugin.version}</version>
-                </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+            </plugin>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${org.apache.maven.plugins.version}</version>
-                    <configuration>
-                        <source>${project.java.version}</source>
-                        <target>${project.java.version}</target>
-                    </configuration>
-                </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${org.apache.maven.plugins.version}</version>
+                <configuration>
+                    <source>${project.java.version}</source>
+                    <target>${project.java.version}</target>
+                </configuration>
+            </plugin>
 
-            </plugins>
-        </pluginManagement>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echo>//////////_____running in process_______///////</echo>
+                                <echo>curent suite ${suite.name}</echo>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>regression</id>
+            <properties>
+                <suite.name>REGRESSION</suite.name>
+            </properties>
+
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>debug-suite</id>
+            <properties>
+                <suite.name>DUBUG</suite.name>
+            </properties>
+
+            <activation>
+                <!--                <property>-->
+                <!--                    <name>suite</name>-->
+                <!--                    <value>debug</value>-->
+                <!--                </property>-->
+            </activation>
+        </profile>
+    </profiles>
 
 </project>
