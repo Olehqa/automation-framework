@@ -31,11 +31,11 @@ public class AllTestNgAnnotationsTest extends BaseTest {
 //
 //    The annotated method will be run only once after all the test methods in the current class have run.
 //
-//    @BeforeTest
+//    @BeforeTest // done in test
 //
 ////    The annotated method will be run before any test method belonging to the classes inside the <test> tag is run.
 //
-//    @AfterTest
+//    @AfterTest // done in test
 //
 ////    The annotated method will be run after all the test methods belonging to the classes inside the <test> tag have run.
 //
@@ -43,7 +43,7 @@ public class AllTestNgAnnotationsTest extends BaseTest {
 //
 ////    The list of groups that this configuration method will run before. This method is guaranteed to run shortly before the first test method that belongs to any of these groups is invoked.
 //
-//    @AfterGroups
+//    @AfterGroups // done in test
 //
 ////    The list of groups that this configuration method will run after. This method is guaranteed to run shortly after the last test method that belongs to any of these groups is invoked.
 //
