@@ -67,26 +67,6 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.1</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <echo>//////////_____running in process_______///////</echo>
-                                <echo>curent suite ${suite.name}</echo>
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
     </build>
 
@@ -108,12 +88,6 @@
                 <suite.name>DUBUG</suite.name>
             </properties>
 
-            <activation>
-                <!--                <property>-->
-                <!--                    <name>suite</name>-->
-                <!--                    <value>debug</value>-->
-                <!--                </property>-->
-            </activation>
         </profile>
     </profiles>
 
