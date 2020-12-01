@@ -11,6 +11,4 @@ automation-framework.iml
 !/resources/*
 
 #downloads
-*/data/downloads/*
-*/testfwkdownloads/*
 /src/main/resources/chromedriver.exe
