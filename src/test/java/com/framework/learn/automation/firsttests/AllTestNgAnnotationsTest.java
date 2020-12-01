@@ -1,14 +1,15 @@
-package com.aramework.learn.automation.firsttests;
+package com.framework.learn.automation.firsttests;
 
 
-import com.aramework.learn.automation.BaseTest;
+import com.framework.learn.automation.BaseTest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeGroups;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.testng.Assert.assertFalse;
 
@@ -47,15 +48,15 @@ public class AllTestNgAnnotationsTest extends BaseTest {
 //
 ////    The list of groups that this configuration method will run after. This method is guaranteed to run shortly after the last test method that belongs to any of these groups is invoked.
 //
-//    @BeforeMethod
+//    @BeforeMethod //done in test
 //
 ////    The annotated method will be run before each test method.
 //
-//    @AfterMethod
+//    @AfterMethod // done in test
 //
 ////    The annotated method will be run after each test method.
 //
-//    @DataProvider
+//    @DataProvider // done in test
 
 //    Marks a method as supplying data for a test method. The annotated method must return an Object[ ][ ], where each Object[ ] can be assigned the parameter list of the test method. The @Test method that wants to receive data from this DataProvider needs to use a dataProvider name equals to the name of this annotation.
 
@@ -63,46 +64,65 @@ public class AllTestNgAnnotationsTest extends BaseTest {
 
 //    Marks a method as a factory that returns objects that will be used by TestNG as Test classes. The method must return Object[ ].
 
-//    @Listeners
-
-//    Defines listeners on a test class.
-
 //    @Parameters
 
 //    Describes how to pass parameters to a @Test method.
 
-    private WebDriverWait wait = new WebDriverWait(driver, 5);
-    private String addElement = "//button[contains(text(),'Add Element')]";
     private String delete = "//button[@class='added-manually']";
+    private static final Logger LOGGER = LogManager.getLogger(AllTestNgAnnotationsTest.class);
     private String header = "//h3[contains(text(),'Add/Remove Elements')]";
+    private String addElement = "//button[contains(text(),'Add Element')]";
+    private String baseUrl = "http://the-internet.herokuapp.com/add_remove_elements/";
 
     @BeforeTest(description = "Open url")
     public void openUrl() {
-        driver.get("http://the-internet.herokuapp.com/add_remove_elements/");
+        LOGGER.info(" ______@BeforeTest______");
     }
 
-    @BeforeGroups(description = "group of tests", groups = "group1")
+    @BeforeGroups(description = "group of tests", groups = "group")
     public void beforeGroupOfTests() {
-        boolean isHeaderPresent = driver.findElements(By.xpath(header)).isEmpty();
-        assertFalse(!isHeaderPresent);
+        LOGGER.info(" ______@BeforeGroup______");
     }
 
-    @Test(description = "First Test", dependsOnGroups = "group1")
-    public void testForAllAnnotations() {
+    @Test(description = "First Test", priority = 1, groups = "group", dataProvider = "Buttons")
+    public void testForAllAnnotations(String element) {
+        LOGGER.info(" ______@Test______");
+        driver.get(baseUrl);
 
         driver.findElement(By.xpath(addElement)).click();
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(delete)))).isDisplayed();
+//        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(delete)))).isDisplayed();
         driver.findElement(By.xpath(delete)).click();
         boolean isPresent = driver.findElements(By.xpath(delete)).size() > 0;
         assertFalse(isPresent);
+        driver.findElement(By.xpath(element)).click();
     }
 
-    @AfterTest(description = "Delete all the elements")
+    @AfterGroups(description = "after group of tests", groups = "group")
+    public void beforeGroupRun() {
+        LOGGER.info(" ______@AfterGroup______");
+    }
+
+    @DataProvider(name = "Buttons")
+    public Iterator<Object[]> buttonProvider() {
+        LOGGER.info(" ______@DataProvider______");
+
+        List<Object[]> provider = new ArrayList<>();
+        provider.add(new Object[]{delete});
+        provider.add(new Object[]{addElement});
+        return provider.iterator();
+    }
+
+    @BeforeMethod(description = "before each test method")
+    public void beforeMethods() {
+        LOGGER.info(" ______@BeforeMethod______");
+
+    }
+
+    @AfterMethod(description = "Delete all the elements")
     public void deleteElements() {
+        LOGGER.info(" ______@AfterMethod______");
         if (driver.findElement(By.xpath(delete)).isDisplayed()) {
             driver.findElement(By.xpath(delete)).click();
         }
     }
-
-
 }
