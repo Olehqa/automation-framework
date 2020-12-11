@@ -3,10 +3,9 @@
 
 *.iml
 .idea
-automation-framework.iml
 
 #logs
 *.log
 
 #project resources
-!/resources/*
+/resources
