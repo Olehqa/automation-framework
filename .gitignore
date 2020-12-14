@@ -1,16 +1,6 @@
 # IntelliJ
-/out/
 *.iml
 .idea/
-automation-framework.iml
 
 #logs
 *.log
-
-#project resources
-resources/*
-
-#downloads
-/src/main/resources/chromedriver.exe
-
-target/
