@@ -1,10 +1,31 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="test examples"
-       allow-return-values="true" verbose="1"
+       allow-return-values="true" verbose="2"
        parallel="tests">
     <test name="all" parallel="classes" thread-count="5" time-out="240000">
         <packages>
             <package name="com.framework.learn.automation.*"/>
         </packages>
     </test>
+
+    <test name="All test with annotations" time-out="10000">
+        <classes>
+            <class name="com.framework.learn.automation.firsttests.AllTestNgAnnotationsTest"/>
+        </classes>
+    </test>
+
+    <test name="All test with annotations with parameters" time-out="10000">
+        <parameter name="parameterFromXml" value="xmlParameter">
+            <classes>
+                <class name="com.framework.learn.automation.firsttests.AllTestNgAnnotationsTest"/>
+            </classes>
+        </parameter>
+    </test>
+
+    <test name="All test with annotations with Factory" time-out="10000">
+        <classes>
+            <class name="com.framework.learn.automation.firsttests.AllTestNgAnnotationsTestFactory"/>
+        </classes>
+    </test>
+
 </suite>
