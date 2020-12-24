@@ -2,19 +2,19 @@
 <suite name="test examples"
        allow-return-values="true" verbose="2"
        parallel="tests">
-    <test name="all" parallel="classes" thread-count="5" time-out="240000">
+    <test name="all" parallel="classes" thread-count="5" time-out="1000">
         <packages>
             <package name="com.framework.learn.automation.*"/>
         </packages>
     </test>
 
-    <test name="All test with annotations" time-out="10000">
+    <test name="All test with annotations" time-out="5">
         <classes>
             <class name="com.framework.learn.automation.firsttests.AllTestNgAnnotationsTest"/>
         </classes>
     </test>
 
-    <test name="All test with annotations with parameters" time-out="10000">
+    <test name="All test with annotations with parameters" time-out="1000">
         <parameter name="parameterFromXml" value="xmlParameter">
             <classes>
                 <class name="com.framework.learn.automation.firsttests.AllTestNgAnnotationsTest"/>

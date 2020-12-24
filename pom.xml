@@ -70,7 +70,7 @@
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/main/resources/suite.xml</suiteXmlFile>
+                        <suiteXmlFile>suite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

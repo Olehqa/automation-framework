@@ -44,31 +44,6 @@ public class AllTestNgAnnotationsTest extends BaseTest {
         this.newMessage = newMessage;
     }
 
-
-    @BeforeSuite(description = "Clean up")
-    public void cleanCookie() {
-        LOGGER.info(newMessage);
-        LOGGER.info(" ______@BeforeSuite______");
-    }
-
-    @BeforeClass(description = "set ub driver")
-    public void setUp() {
-        LOGGER.info(newMessage);
-        LOGGER.info(" ______@BeforeClass______");
-    }
-
-    @AfterClass(description = "After class")
-    public void tearDown() {
-        LOGGER.info(newMessage);
-        LOGGER.info(" ______@AfterClass______");
-    }
-
-    @AfterSuite(description = "Clean up", enabled = true)
-    public void cleanCookieAfter() {
-        LOGGER.info(newMessage);
-        LOGGER.info(" ______@AfterSuite______");
-    }
-
     @BeforeTest(description = "Open url")
     public void openUrl() {
         LOGGER.info(newMessage);
@@ -87,9 +62,15 @@ public class AllTestNgAnnotationsTest extends BaseTest {
         LOGGER.info(element);
     }
 
+    @Test(description = "Second test", priority = 2, dependsOnMethods = "testForAllAnnotations", dataProvider = "secondDataProvider")
+    public void secondTest(String name, Integer number, Integer secondNumber) {
+        LOGGER.info(newMessage);
+        LOGGER.info(name + number.toString() + secondNumber.toString());
+    }
+
     @Parameters({"parameterFromXml"})
-    @Test(description = "Second Test", priority = 2)
-    public void testForAllAnnotationsWithParameters(String parameterFromXml) {
+    @Test(description = "Third Test", priority = 3, dependsOnGroups = "group")
+    public void testForAllAnnotationsWithParameters(@Optional("optionalParameter") String parameterFromXml) {
         LOGGER.info(newMessage);
         LOGGER.info(parameterFromXml);
     }
@@ -110,6 +91,16 @@ public class AllTestNgAnnotationsTest extends BaseTest {
         provider.add(new Object[]{"______@Second Test from Data provider______"});
         return provider.iterator();
     }
+
+    @DataProvider(name = "secondDataProvider")
+    public Object[][] secondProvider() {
+        return new Object[][]{
+                {"firstString", 36, 11},
+                {"secondString", 35, 12},
+                {"thirdString", 34, 13},
+        };
+    }
+
 
     @BeforeMethod(description = "before each test method")
     public void beforeMethods() {
