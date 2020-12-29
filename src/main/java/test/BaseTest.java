@@ -15,9 +15,9 @@ public class BaseTest {
     public WebDriver driver;
     public String baseUrl;
     public boolean acceptNextAlert = true;
-    public StringBuffer verificationErrors = new StringBuffer();
+    public StringBuilder verificationErrors = new StringBuilder();
     public String browser;
-    public WebDriverWait wait;
+    public WebDriverWait webDriverWait;
 
     @BeforeClass
     public void setUP() {
@@ -34,7 +34,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 10);
+        webDriverWait = new WebDriverWait(driver, 10);
     }
 
     @AfterClass(alwaysRun = true)
