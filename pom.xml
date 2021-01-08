@@ -53,18 +53,6 @@
             <version>${org.seleniumhq.selenium}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-server</artifactId>
-            <version>${org.seleniumhq.selenium}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>${org.seleniumhq.selenium}</version>
-        </dependency>
-
     </dependencies>
 
     <build>
