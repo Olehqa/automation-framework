@@ -82,25 +82,25 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <id>regression</id>
-            <properties>
-                <suite.name>REGRESSION</suite.name>
-            </properties>
+    <!--    <profiles>-->
+    <!--        <profile>-->
+    <!--            <id>regression</id>-->
+    <!--            <properties>-->
+    <!--                <suite.name>REGRESSION</suite.name>-->
+    <!--            </properties>-->
 
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
+    <!--            <activation>-->
+    <!--                <activeByDefault>true</activeByDefault>-->
+    <!--            </activation>-->
+    <!--        </profile>-->
 
-        <profile>
-            <id>debug-suite</id>
-            <properties>
-                <suite.name>DUBUG</suite.name>
-            </properties>
+    <!--        <profile>-->
+    <!--            <id>debug-suite</id>-->
+    <!--            <properties>-->
+    <!--                <suite.name>DUBUG</suite.name>-->
+    <!--            </properties>-->
 
-        </profile>
-    </profiles>
+    <!--        </profile>-->
+    <!--    </profiles>-->
 
 </project>
