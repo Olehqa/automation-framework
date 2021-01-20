@@ -1,5 +1,8 @@
 package test;
 
+import helpedfunctions.PropertiesUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -7,20 +10,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import java.util.ResourceBundle;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
+    public static final Logger LOGGER = LogManager.getLogger(BaseTest.class);
     public WebDriver driver;
     public WebDriverWait webDriverWait;
-    private final ResourceBundle waiterTime = ResourceBundle.getBundle("resources.resoursebundle.waitertime");
-    public long smallTime = Long.parseLong(waiterTime.getString("small_time_out"));
-    public long longTime = Long.parseLong(waiterTime.getString("big_time_out"));
+
+    public long smallTime = Long.parseLong(System.getProperty("small_time_out", "50"));
+    public long longTime = Long.parseLong(System.getProperty("big_time_out", "100"));
+
 
     @BeforeClass
     public void setUP() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver_v88.exe");
+        try {
+            PropertiesUtils.loadProperties("config.properties");
+
+        } catch (IOException e) {
+            LOGGER.error("Cannot find properties file by path");
+        }
+
+        System.setProperty("webdriver.chrome.driver", System.getProperty("chromedriver", "chromedriver_v87.exe"));
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("--disable-dev-shm-usage");
