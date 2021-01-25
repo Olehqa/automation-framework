@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
@@ -21,10 +20,12 @@ public class BaseTest {
 
     @BeforeTest(alwaysRun = true)
     public void setUP() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        String path = classLoader.getResource("chromedriver_v87.exe").getPath();
+
         browser = System.getProperty("browser");
 
-        System.setProperty("webdriver.chrome.driver",
-                "src" + File.separator + "main" + File.separator + "resources" + File.separator + "chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", path);
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("--disable-dev-shm-usage");
