@@ -8,30 +8,29 @@ import org.openqa.selenium.support.PageFactory;
 import static test.BaseTest.driver;
 
 public class LoginPage {
-    @FindBy(xpath = "//input[@name='username']")
+    @FindBy(name = "username")
     public WebElement loginField;
-    //            "https://mailsac.com/";
-    @FindBy(xpath = "//input[@name='password']")
+
+    @FindBy(name = "password")
     public WebElement passwordField;
+
     @FindBy(xpath = "//button[@type='submit']")
-    public WebElement signIn;
-    private String mainUrl = "https://mailsac.com/login?continue=/inbox/forfun777@mailsac.com";
+    public WebElement signInButton;
+
+    private String mainUrl = "https://mailsac.com/login?continue=/inbox/";
 
 
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        driver.get(mainUrl);
+
     }
 
-    public EmailBox loginToMailBox(String login, String password) {
+    public EmailBoxPage loginToMailBox(String fullEmail, String login, String password) {
+        driver.get(mainUrl.concat(fullEmail));
         loginField.sendKeys(login);
         passwordField.sendKeys(password);
-        signIn.click();
-        return new EmailBox(driver);
+        signInButton.click();
+        return new EmailBoxPage(driver);
 
-
-//        WebElement buttonDali = new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(buttonNext));
-//        Actions action = new Actions(driver);
-//        action.moveToElement(buttonDali).click().build().perform();
     }
 }
