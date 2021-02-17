@@ -67,14 +67,16 @@ public class EmailBoxPage {
         throw new Exception("email not found");
     }
 
-    public EmailBoxPage openEmailIfExistBySubject(String subject) throws Exception {
+    public EmailBoxPage openEmailIfExistBySubject(String subject) {
+//        try {
         for (WebElement text : getAllSubjects()) {
             if (text.getText().equals(subject)) {
                 text.click();
                 return new EmailBoxPage(driver);
             }
         }
-        throw new Exception("email not found");
+//        }catch ()
+        return null;
     }
 
     public NewEmailPage reply() {

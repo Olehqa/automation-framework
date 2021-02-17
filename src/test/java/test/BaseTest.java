@@ -18,7 +18,7 @@ public class BaseTest {
 //    private final ResourceBundle waiterTime = ResourceBundle.getBundle("java.resources.waitertime");
 //    public long smallTime = Long.parseLong(waiterTime.getString("small_time_out"));
 //    public long longTime = Long.parseLong(waiterTime.getString("big_time_out"));
-
+//todo reveiw base test
     @BeforeTest(alwaysRun = true)
     public void setUP() {
 //        ClassLoader classLoader = getClass().getClassLoader();

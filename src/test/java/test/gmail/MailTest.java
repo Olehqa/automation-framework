@@ -13,28 +13,31 @@ public class MailTest extends BaseTest {
     private String login = "alpegaqa";
     private String login2 = "forfun777";
     private String login3 = "oleh";
+
     private String fullEmail = "alpegaqa@mailsac.com";
     private String fullEmail2 = "forfun777@mailsac.com";
     private String fullEmail3 = "oleh@mailsac.com";
 
-    //todo insert code with pass
-    private String emailForCheck = "qa1.oleh@gmail.com";
-    private String bodySubjectText1 = "Subject2";
-    private String bodySubjectText2 = "Subject1";
+    private String pas2 = "forFun7777";
+    private String pas3 = "autoauto77";
+    private String pas = "Transwide01";
+
+    private String bodySubjectText = "email for myself";
     private LoginPage loginPage;
     NewEmailPage newEmailPage;
 
-    @BeforeTest(description = "open gmail")
+    @BeforeTest(description = "Open email")
     public void openLoginPage() {
         loginPage = new LoginPage(driver);
+        emailBox = loginPage.loginToMailBox(fullEmail2, login, pas);
     }
 
     @Test(description = "check mail", priority = 1)
-    public void checkMail() throws Exception {
-        emailBox = loginPage.loginToMailBox(fullEmail2, login, pas);
-        emailBox.openEmailIfExistBySubject(bodySubjectText2);
+    public void checkMail() {
+
+        emailBox.openEmailIfExistBySubject(bodySubjectText);
         newEmailPage = emailBox.reply()
-                .fillBody(bodySubjectText2);
+                .fillBody(bodySubjectText);
 
         emailBox = newEmailPage.sendEmail();
     }
