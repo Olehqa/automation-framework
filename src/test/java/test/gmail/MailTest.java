@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import test.BaseTest;
 import test.gmail.pages.EmailBoxPage;
 import test.gmail.pages.LoginPage;
+import test.gmail.pages.MailRow;
 import test.gmail.pages.NewEmailPage;
 
 public class MailTest extends BaseTest {
@@ -18,13 +19,18 @@ public class MailTest extends BaseTest {
     private String fullEmail2 = "forfun777@mailsac.com";
     private String fullEmail3 = "oleh@mailsac.com";
 
+    private String emailForCheck = "qa1.oleh@gmail.com";
+
     private String pas2 = "forFun7777";
     private String pas3 = "autoauto77";
     private String pas = "Transwide01";
 
-    private String bodySubjectText = "email for myself";
+    private String subject2 = "Subject2";
+    private String bodySubjectTextForReply = "Text for replye";
+    private String emailBody = "Text2";
     private LoginPage loginPage;
-    NewEmailPage newEmailPage;
+    private NewEmailPage newEmailPage;
+    private MailRow mailRow;
 
     @BeforeTest(description = "Open email")
     public void openLoginPage() {
@@ -34,10 +40,9 @@ public class MailTest extends BaseTest {
 
     @Test(description = "check mail", priority = 1)
     public void checkMail() {
-
-        emailBox.openEmailIfExistBySubject(bodySubjectText);
-        newEmailPage = emailBox.reply()
-                .fillBody(bodySubjectText);
+        emailBox.searchEmail(emailForCheck, subject2);
+        newEmailPage = mailRow.reply()
+                .fillBody(bodySubjectTextForReply);
 
         emailBox = newEmailPage.sendEmail();
     }
