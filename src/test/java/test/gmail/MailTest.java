@@ -21,10 +21,6 @@ public class MailTest extends BaseTest {
 
     private String emailForCheck = "qa1.oleh@gmail.com";
 
-    private String pas2 = "forFun7777";
-    private String pas3 = "autoauto77";
-    private String pas = "Transwide01";
-
     private String subject2 = "Subject2";
     private String bodySubjectTextForReply = "Text for replye";
     private String emailBody = "Text2";
